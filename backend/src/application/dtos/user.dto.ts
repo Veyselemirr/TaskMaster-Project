@@ -341,6 +341,9 @@ export class UserStatisticsDto {
 
   @ApiProperty({
     type: 'object',
+    additionalProperties: {
+      type: 'number'
+    },
     example: {
       [Role.ADMIN]: 5,
       [Role.USER]: 140,
