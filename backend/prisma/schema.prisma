@@ -24,6 +24,8 @@ model User {
   createdAt               DateTime  @default(now())
   updatedAt               DateTime  @updatedAt
   tasks                   Task[]
+  ownedProjects           Project[] @relation("ProjectOwner")
+  projectMemberships      ProjectMember[]
 
   @@index([email])
   @@index([role])
@@ -44,6 +46,64 @@ model Task {
   updatedAt   DateTime  @updatedAt
   userId      Int
   user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  projectId   Int?
+  project     Project?  @relation(fields: [projectId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([projectId])
+  @@index([completed])
+  @@index([priority])
+}
+
+model Project {
+  id          Int             @id @default(autoincrement())
+  name        String          @db.VarChar(200)
+  description String?         @db.VarChar(1000)
+  status      ProjectStatus   @default(PLANNING)
+  priority    ProjectPriority @default(MEDIUM)
+  startDate   DateTime?
+  endDate     DateTime?
+  deadline    DateTime?
+  budget      Decimal?        @db.Decimal(15, 2)
+  currency    String?         @db.VarChar(3)
+  isActive    Boolean         @default(true)
+  isPublic    Boolean         @default(false)
+  ownerId     Int
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+  
+  owner       User            @relation("ProjectOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+  members     ProjectMember[]
+  tasks       Task[]
+
+  @@index([ownerId])
+  @@index([status])
+  @@index([priority])
+  @@index([isActive])
+  @@index([isPublic])
+  @@index([deadline])
+  @@index([createdAt])
+  @@index([updatedAt])
+  @@index([name])
+}
+
+model ProjectMember {
+  id        Int            @id @default(autoincrement())
+  userId    Int
+  projectId Int
+  role      TeamMemberRole @default(MEMBER)
+  joinedAt  DateTime       @default(now())
+  isActive  Boolean        @default(true)
+  
+  user      User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  project   Project        @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, projectId])
+  @@index([userId])
+  @@index([projectId])
+  @@index([role])
+  @@index([isActive])
+  @@index([joinedAt])
 }
 
 enum Priority {
@@ -56,4 +116,30 @@ enum Role {
   ADMIN
   USER
   MODERATOR
+  PROJECT_MANAGER
+}
+
+enum ProjectStatus {
+  PLANNING
+  ACTIVE
+  ON_HOLD
+  COMPLETED
+  CANCELLED
+}
+
+enum ProjectPriority {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum TeamMemberRole {
+  PROJECT_MANAGER
+  TEAM_LEAD
+  DEVELOPER
+  DESIGNER
+  TESTER
+  ANALYST
+  MEMBER
 }
