@@ -9,13 +9,28 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  name      String?
-  password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  tasks     Task[]
+  id                      Int       @id @default(autoincrement())
+  email                   String    @unique
+  name                    String?
+  password                String
+  role                    Role      @default(USER)
+  isActive                Boolean   @default(true)
+  isEmailVerified         Boolean   @default(false)
+  emailVerificationToken  String?   @unique
+  passwordResetToken      String?   @unique
+  passwordResetExpires    DateTime?
+  tokenVersion            Int       @default(0)
+  lastLoginAt             DateTime?
+  createdAt               DateTime  @default(now())
+  updatedAt               DateTime  @updatedAt
+  tasks                   Task[]
+
+  @@index([email])
+  @@index([role])
+  @@index([isActive])
+  @@index([isEmailVerified])
+  @@index([emailVerificationToken])
+  @@index([passwordResetToken])
 }
 
 model Task {
@@ -35,4 +50,10 @@ enum Priority {
   LOW
   MEDIUM
   HIGH
+}
+
+enum Role {
+  ADMIN
+  USER
+  MODERATOR
 }
