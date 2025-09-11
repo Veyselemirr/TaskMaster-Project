@@ -33,7 +33,7 @@ export class UserRepository implements IUserRepository {
         email: userData.email,
         name: userData.name,
         password: userData.password,
-        role: userData.role,
+        role: userData.role as any,
         isActive: userData.isActive,
         isEmailVerified: userData.isEmailVerified,
         emailVerificationToken: userData.emailVerificationToken,
@@ -54,7 +54,7 @@ export class UserRepository implements IUserRepository {
     if (userData.email !== undefined) updateData.email = userData.email;
     if (userData.name !== undefined) updateData.name = userData.name;
     if (userData.password !== undefined) updateData.password = userData.password;
-    if (userData.role !== undefined) updateData.role = userData.role;
+    if (userData.role !== undefined) updateData.role = userData.role as any;
     if (userData.isActive !== undefined) updateData.isActive = userData.isActive;
     if (userData.isEmailVerified !== undefined) updateData.isEmailVerified = userData.isEmailVerified;
     if (userData.emailVerificationToken !== undefined) updateData.emailVerificationToken = userData.emailVerificationToken;
@@ -136,7 +136,7 @@ export class UserRepository implements IUserRepository {
   // Role and permission queries
   async findByRole(role: Role): Promise<User[]> {
     const users = await this.prisma.user.findMany({
-      where: { role },
+      where: { role: role as any },
       include: { tasks: true },
       orderBy: { createdAt: 'desc' }
     });
@@ -177,7 +177,7 @@ export class UserRepository implements IUserRepository {
   // Statistics
   async countByRole(role: Role): Promise<number> {
     return await this.prisma.user.count({
-      where: { role }
+      where: { role: role as any }
     });
   }
 
@@ -205,14 +205,16 @@ export class UserRepository implements IUserRepository {
       verified,
       adminCount,
       userCount,
-      moderatorCount
+      moderatorCount,
+      projectManagerCount
     ] = await Promise.all([
       this.prisma.user.count(),
       this.prisma.user.count({ where: { isActive: true } }),
       this.prisma.user.count({ where: { isEmailVerified: true } }),
-      this.prisma.user.count({ where: { role: Role.ADMIN } }),
-      this.prisma.user.count({ where: { role: Role.USER } }),
-      this.prisma.user.count({ where: { role: Role.MODERATOR } })
+      this.prisma.user.count({ where: { role: Role.ADMIN as any } }),
+      this.prisma.user.count({ where: { role: Role.USER as any } }),
+      this.prisma.user.count({ where: { role: Role.MODERATOR as any } }),
+      this.prisma.user.count({ where: { role: Role.PROJECT_MANAGER as any } })
     ]);
 
     return {
@@ -224,7 +226,8 @@ export class UserRepository implements IUserRepository {
       byRole: {
         [Role.ADMIN]: adminCount,
         [Role.USER]: userCount,
-        [Role.MODERATOR]: moderatorCount
+        [Role.MODERATOR]: moderatorCount,
+        [Role.PROJECT_MANAGER]: projectManagerCount
       }
     };
   }
@@ -234,7 +237,7 @@ export class UserRepository implements IUserRepository {
     await this.prisma.user.updateMany({
       where: { id: { in: userIds } },
       data: { 
-        role,
+        role: role as any,
         tokenVersion: { increment: 1 } // Invalidate existing tokens
       }
     });
@@ -300,7 +303,7 @@ export class UserRepository implements IUserRepository {
     const whereCondition: any = {};
 
     if (filters.role) {
-      whereCondition.role = filters.role;
+      whereCondition.role = filters.role as any;
     }
     
     if (filters.isActive !== undefined) {

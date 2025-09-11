@@ -65,9 +65,9 @@ export class UserService {
       registerDto.role || Role.USER
     );
 
-    // Add verification token
+    // Add verification token - userData is Omit<User> so cast it
     const userWithToken = new User(
-      userData.id,
+      0, // id will be set by database
       userData.email,
       userData.name,
       userData.password,
@@ -79,8 +79,8 @@ export class UserService {
       userData.passwordResetExpires,
       userData.tokenVersion,
       userData.lastLoginAt,
-      userData.createdAt,
-      userData.updatedAt,
+      new Date(), // createdAt
+      new Date(), // updatedAt
       userData.tasks
     );
 
@@ -209,9 +209,9 @@ export class UserService {
       createUserDto.role || Role.USER
     );
 
-    // Set initial status
+    // Set initial status - userData is Omit<User> so use proper values
     const userWithStatus = new User(
-      userData.id,
+      0, // id will be set by database
       userData.email,
       userData.name,
       userData.password,
@@ -223,8 +223,8 @@ export class UserService {
       userData.passwordResetExpires,
       userData.tokenVersion,
       userData.lastLoginAt,
-      userData.createdAt,
-      userData.updatedAt,
+      new Date(), // createdAt
+      new Date(), // updatedAt
       userData.tasks
     );
 

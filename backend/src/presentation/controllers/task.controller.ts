@@ -211,6 +211,7 @@ export class TaskController {
       description: task.description,
       completed: task.completed,
       priority: task.priority,
+      
       dueDate: task.dueDate,
       createdAt: task.createdAt,
       updatedAt: task.updatedAt,

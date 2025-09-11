@@ -1,7 +1,8 @@
 export enum Role {
-  ADMIN = 'admin',
-  USER = 'user',
-  MODERATOR = 'moderator',
+  ADMIN = 'ADMIN',
+  USER = 'USER',
+  MODERATOR = 'MODERATOR',
+  PROJECT_MANAGER = 'PROJECT_MANAGER',
 }
 
 export enum Permission {
@@ -35,6 +36,14 @@ export const ROLE_PERMISSIONS: Record<Role, Permission[]> = {
     Permission.UPDATE_TASKS,
     Permission.DELETE_TASKS,
     Permission.MANAGE_ROLES,
+    Permission.VIEW_ANALYTICS,
+  ],
+  [Role.PROJECT_MANAGER]: [
+    Permission.READ_USERS,
+    Permission.READ_TASKS,
+    Permission.CREATE_TASKS,
+    Permission.UPDATE_TASKS,
+    Permission.DELETE_TASKS,
     Permission.VIEW_ANALYTICS,
   ],
   [Role.MODERATOR]: [
