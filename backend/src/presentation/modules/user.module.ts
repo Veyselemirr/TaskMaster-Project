@@ -1,23 +1,16 @@
 import { Module } from '@nestjs/common';
 import { UserController } from '../controllers/user.controller';
 import { UserService } from '../../application/services/user.service';
-import { UserRepository } from '../../infrastructure/repositories/user.repository';
-import { DatabaseModule } from '../../infrastructure/database/database.module';
-import { USER_REPOSITORY } from '../../domain/interfaces/user.repository.interface';
+import { InfrastructureModule } from '../../infrastructure/infrastructure.module';
 
 @Module({
-  imports: [DatabaseModule],
+  imports: [InfrastructureModule],
   controllers: [UserController],
   providers: [
-    UserService,
-    {
-      provide: USER_REPOSITORY,
-      useClass: UserRepository
-    }
+    UserService
   ],
   exports: [
-    UserService,
-    USER_REPOSITORY
+    UserService
   ]
 })
 export class UserModule {}
