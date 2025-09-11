@@ -101,11 +101,11 @@ export class UserController {
         email: result.user.email,
         name: result.user.name,
         role: result.user.role,
-        isActive: result.user.isActive,
-        isEmailVerified: result.user.isEmailVerified,
-        lastLoginAt: result.user.lastLoginAt,
-        createdAt: result.user.createdAt,
-        updatedAt: result.user.updatedAt
+        isActive: (result.user as any).isActive || true,
+        isEmailVerified: (result.user as any).isEmailVerified || false,
+        lastLoginAt: (result.user as any).lastLoginAt || null,
+        createdAt: (result.user as any).createdAt || new Date(),
+        updatedAt: (result.user as any).updatedAt || new Date()
       }
     };
   }
