@@ -119,7 +119,7 @@ export function Sidebar({ isOpen = true, onClose }: SidebarProps) {
       {/* Mobile overlay */}
       {isOpen && (
         <div 
-          className="fixed inset-0 z-40 bg-gray-600 bg-opacity-75 md:hidden"
+          className="fixed inset-0 z-40 bg-neutral-600 bg-opacity-75 md:hidden"
           onClick={onClose}
         />
       )}
@@ -127,18 +127,18 @@ export function Sidebar({ isOpen = true, onClose }: SidebarProps) {
       {/* Sidebar */}
       <div
         className={cn(
-          'fixed inset-y-0 left-0 z-50 w-64 transform bg-white border-r border-gray-200 transition-transform duration-300 ease-in-out md:relative md:translate-x-0',
+          'fixed inset-y-0 left-0 z-50 w-64 transform bg-white border-r border-neutral-200 transition-transform duration-300 ease-in-out md:relative md:translate-x-0 shadow-warm-lg',
           isOpen ? 'translate-x-0' : '-translate-x-full'
         )}
       >
         <div className="flex h-full flex-col">
           {/* Header */}
-          <div className="flex h-16 items-center justify-between px-6 border-b border-gray-200">
+          <div className="flex h-16 items-center justify-between px-6 border-b border-neutral-200">
             <div className="flex items-center space-x-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary-600">
                 <span className="text-sm font-bold text-white">T</span>
               </div>
-              <span className="font-bold text-gray-900">TaskMaster</span>
+              <span className="font-bold text-neutral-900">TaskMaster</span>
             </div>
           </div>
 
@@ -154,7 +154,7 @@ export function Sidebar({ isOpen = true, onClose }: SidebarProps) {
           <nav className="flex-1 space-y-8 px-4 pb-4">
             {/* Main Navigation */}
             <div>
-              <h3 className="px-2 text-xs font-semibold uppercase tracking-wider text-gray-500">
+              <h3 className="px-2 text-xs font-semibold uppercase tracking-wider text-neutral-500">
                 Main
               </h3>
               <div className="mt-2 space-y-1">
@@ -165,8 +165,8 @@ export function Sidebar({ isOpen = true, onClose }: SidebarProps) {
                     className={cn(
                       'group flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-200',
                       item.current
-                        ? 'bg-indigo-50 text-indigo-700'
-                        : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+                        ? 'bg-primary-50 text-primary-700'
+                        : 'text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900'
                     )}
                     onClick={onClose}
                   >
@@ -174,7 +174,7 @@ export function Sidebar({ isOpen = true, onClose }: SidebarProps) {
                       <item.icon
                         className={cn(
                           'mr-3 h-5 w-5 flex-shrink-0',
-                          item.current ? 'text-indigo-500' : 'text-gray-400 group-hover:text-gray-500'
+                          item.current ? 'text-primary-500' : 'text-neutral-400 group-hover:text-neutral-500'
                         )}
                       />
                       {item.name}
@@ -191,7 +191,7 @@ export function Sidebar({ isOpen = true, onClose }: SidebarProps) {
 
             {/* Quick Actions */}
             <div>
-              <h3 className="px-2 text-xs font-semibold uppercase tracking-wider text-gray-500">
+              <h3 className="px-2 text-xs font-semibold uppercase tracking-wider text-neutral-500">
                 Quick Actions
               </h3>
               <div className="mt-2 space-y-1">
@@ -202,8 +202,8 @@ export function Sidebar({ isOpen = true, onClose }: SidebarProps) {
                     className={cn(
                       'group flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-200',
                       item.current
-                        ? 'bg-indigo-50 text-indigo-700'
-                        : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+                        ? 'bg-primary-50 text-primary-700'
+                        : 'text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900'
                     )}
                     onClick={onClose}
                   >
@@ -211,7 +211,7 @@ export function Sidebar({ isOpen = true, onClose }: SidebarProps) {
                       <item.icon
                         className={cn(
                           'mr-3 h-5 w-5 flex-shrink-0',
-                          item.current ? 'text-indigo-500' : 'text-gray-400 group-hover:text-gray-500'
+                          item.current ? 'text-primary-500' : 'text-neutral-400 group-hover:text-neutral-500'
                         )}
                       />
                       {item.name}
@@ -239,15 +239,15 @@ export function Sidebar({ isOpen = true, onClose }: SidebarProps) {
                     className={cn(
                       'group flex items-center rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-200',
                       item.current
-                        ? 'bg-indigo-50 text-indigo-700'
-                        : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+                        ? 'bg-primary-50 text-primary-700'
+                        : 'text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900'
                     )}
                     onClick={onClose}
                   >
                     <item.icon
                       className={cn(
                         'mr-3 h-5 w-5 flex-shrink-0',
-                        item.current ? 'text-indigo-500' : 'text-gray-400 group-hover:text-gray-500'
+                        item.current ? 'text-indigo-500' : 'text-neutral-400 group-hover:text-neutral-500'
                       )}
                     />
                     {item.name}

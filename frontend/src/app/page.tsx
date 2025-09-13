@@ -112,7 +112,7 @@ const stats = [
     change: '+4',
     changeType: 'increase' as const,
     icon: CheckCircle,
-    color: 'text-blue-600'
+    color: 'text-primary-600'
   },
   {
     name: 'In Progress',
@@ -120,7 +120,7 @@ const stats = [
     change: '+2',
     changeType: 'increase' as const,
     icon: Clock,
-    color: 'text-orange-600'
+    color: 'text-warning-600'
   },
   {
     name: 'Overdue',
@@ -128,7 +128,7 @@ const stats = [
     change: '-1',
     changeType: 'decrease' as const,
     icon: AlertTriangle,
-    color: 'text-red-600'
+    color: 'text-error-600'
   },
   {
     name: 'Completed',
@@ -136,7 +136,7 @@ const stats = [
     change: '+3',
     changeType: 'increase' as const,
     icon: TrendingUp,
-    color: 'text-green-600'
+    color: 'text-success-600'
   }
 ]
 
@@ -152,8 +152,8 @@ export default function DashboardPage() {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-            <p className="mt-1 text-gray-600">
+            <h1 className="text-3xl font-bold text-neutral-900">Dashboard</h1>
+            <p className="mt-1 text-neutral-600">
               Welcome back! Here's what's happening with your tasks.
             </p>
           </div>
@@ -174,15 +174,15 @@ export default function DashboardPage() {
                   </div>
                   <div className="ml-5 w-0 flex-1">
                     <dl>
-                      <dt className="text-sm font-medium text-gray-500 truncate">
+                      <dt className="text-sm font-medium text-neutral-500 truncate">
                         {stat.name}
                       </dt>
                       <dd className="flex items-baseline">
-                        <div className="text-2xl font-semibold text-gray-900">
+                        <div className="text-2xl font-semibold text-neutral-900">
                           {stat.value}
                         </div>
                         <div className={`ml-2 flex items-baseline text-sm font-semibold ${
-                          stat.changeType === 'increase' ? 'text-green-600' : 'text-red-600'
+                          stat.changeType === 'increase' ? 'text-success-600' : 'text-error-600'
                         }`}>
                           {stat.change}
                         </div>
@@ -211,7 +211,7 @@ export default function DashboardPage() {
                     key={task.id}
                     task={task}
                     onStatusChange={handleStatusChange}
-                    className="shadow-none border-0 border-b border-gray-200 rounded-none last:border-b-0"
+                    className="shadow-none border-0 border-b border-neutral-200 rounded-none last:border-b-0"
                   />
                 ))}
                 <div className="pt-4">
@@ -273,10 +273,10 @@ export default function DashboardPage() {
                         </Badge>
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-gray-900 truncate">
+                        <p className="text-sm font-medium text-neutral-900 truncate">
                           {task.title}
                         </p>
-                        <p className="text-sm text-gray-500">
+                        <p className="text-sm text-neutral-500">
                           Due {task.dueDate ? formatDate(task.dueDate, 'MMM dd') : 'No due date'}
                         </p>
                       </div>
