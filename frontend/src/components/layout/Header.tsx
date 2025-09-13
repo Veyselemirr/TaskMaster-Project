@@ -29,14 +29,7 @@ export function Header({ onMenuToggle, isMenuOpen }: HeaderProps) {
           >
             {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>
-
-          {/* Logo */}
-          <div className="flex items-center space-x-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary-600">
-              <span className="text-sm font-bold text-white">T</span>
-            </div>
-            <span className="hidden font-bold text-neutral-900 sm:block">TaskMaster</span>
-          </div>
+        
         </div>
 
         {/* Center - Search */}
