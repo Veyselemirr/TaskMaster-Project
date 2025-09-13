@@ -8,7 +8,7 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
   ({ className, padding = 'md', shadow = 'sm', ...props }, ref) => {
-    const baseClasses = 'bg-white border border-gray-200 rounded-lg'
+    const baseClasses = 'bg-white border border-neutral-200 rounded-lg'
     
     const paddings = {
       none: '',
@@ -20,8 +20,8 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
     const shadows = {
       none: '',
       sm: 'shadow-sm',
-      md: 'shadow-md',
-      lg: 'shadow-lg'
+      md: 'shadow-warm',
+      lg: 'shadow-warm-lg'
     }
 
     return (
@@ -60,7 +60,7 @@ export interface CardTitleProps extends React.HTMLAttributes<HTMLHeadingElement>
 const CardTitle = React.forwardRef<HTMLHeadingElement, CardTitleProps>(
   ({ className, ...props }, ref) => (
     <h3
-      className={cn('text-lg font-semibold leading-none tracking-tight text-gray-900', className)}
+      className={cn('text-lg font-semibold leading-none tracking-tight text-neutral-900', className)}
       ref={ref}
       {...props}
     />
@@ -74,7 +74,7 @@ export interface CardDescriptionProps extends React.HTMLAttributes<HTMLParagraph
 const CardDescription = React.forwardRef<HTMLParagraphElement, CardDescriptionProps>(
   ({ className, ...props }, ref) => (
     <p
-      className={cn('text-sm text-gray-600', className)}
+      className={cn('text-sm text-neutral-600', className)}
       ref={ref}
       {...props}
     />

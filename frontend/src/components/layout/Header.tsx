@@ -16,7 +16,7 @@ export function Header({ onMenuToggle, isMenuOpen }: HeaderProps) {
   const [searchQuery, setSearchQuery] = React.useState('')
 
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-neutral-200 bg-white/80 backdrop-blur-md shadow-warm">
       <div className="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Left side */}
         <div className="flex items-center space-x-4">
@@ -32,10 +32,10 @@ export function Header({ onMenuToggle, isMenuOpen }: HeaderProps) {
 
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary-600">
               <span className="text-sm font-bold text-white">T</span>
             </div>
-            <span className="hidden font-bold text-gray-900 sm:block">TaskMaster</span>
+            <span className="hidden font-bold text-neutral-900 sm:block">TaskMaster</span>
           </div>
         </div>
 
@@ -46,7 +46,7 @@ export function Header({ onMenuToggle, isMenuOpen }: HeaderProps) {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             leftIcon={<Search className="h-4 w-4" />}
-            className="bg-gray-50 border-gray-200"
+            className="bg-neutral-50 border-neutral-200"
           />
         </div>
 
@@ -75,10 +75,10 @@ export function Header({ onMenuToggle, isMenuOpen }: HeaderProps) {
           {/* User menu */}
           <div className="relative">
             <Button variant="ghost" size="sm" className="flex items-center space-x-2">
-              <div className="h-8 w-8 rounded-full bg-indigo-100 flex items-center justify-center">
-                <User className="h-4 w-4 text-indigo-600" />
+              <div className="h-8 w-8 rounded-full bg-primary-100 flex items-center justify-center">
+                <User className="h-4 w-4 text-primary-600" />
               </div>
-              <span className="hidden text-sm font-medium text-gray-700 sm:block">
+              <span className="hidden text-sm font-medium text-neutral-700 sm:block">
                 John Doe
               </span>
             </Button>

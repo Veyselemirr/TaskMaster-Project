@@ -51,8 +51,8 @@ export function TaskCard({
   return (
     <Card className={cn(
       'group relative transition-all duration-200 hover:shadow-md',
-      isOverdue && !isCompleted && 'border-red-200 bg-red-50/30',
-      isDueToday && !isCompleted && 'border-orange-200 bg-orange-50/30',
+      isOverdue && !isCompleted && 'border-error-200 bg-error-50/30',
+      isDueToday && !isCompleted && 'border-warning-200 bg-warning-50/30',
       className
     )}>
       <CardContent className="p-4">
@@ -76,14 +76,14 @@ export function TaskCard({
             <div className="space-y-1">
               <Link href={`/tasks/${task.id}`} className="block">
                 <h3 className={cn(
-                  'font-medium text-gray-900 line-clamp-2 hover:text-indigo-600 transition-colors',
-                  isCompleted && 'line-through text-gray-500'
+                  'font-medium text-neutral-900 line-clamp-2 hover:text-primary-600 transition-colors',
+                  isCompleted && 'line-through text-neutral-500'
                 )}>
                   {task.title}
                 </h3>
               </Link>
               {task.description && (
-                <p className="text-sm text-gray-600 line-clamp-2">
+                <p className="text-sm text-neutral-600 line-clamp-2">
                   {truncateText(task.description, 100)}
                 </p>
               )}
@@ -95,13 +95,13 @@ export function TaskCard({
                 {task.tags.slice(0, 3).map((tag) => (
                   <span
                     key={tag}
-                    className="inline-flex items-center rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-700"
+                    className="inline-flex items-center rounded-full bg-neutral-100 px-2 py-0.5 text-xs font-medium text-neutral-700"
                   >
                     #{tag}
                   </span>
                 ))}
                 {task.tags.length > 3 && (
-                  <span className="text-xs text-gray-500">
+                  <span className="text-xs text-neutral-500">
                     +{task.tags.length - 3} more
                   </span>
                 )}
@@ -140,12 +140,12 @@ export function TaskCard({
         {task.progress !== undefined && (
           <div className="mt-3">
             <div className="flex items-center justify-between text-sm">
-              <span className="text-gray-600">Progress</span>
-              <span className="font-medium text-gray-900">{task.progress}%</span>
+              <span className="text-neutral-600">Progress</span>
+              <span className="font-medium text-neutral-900">{task.progress}%</span>
             </div>
-            <div className="mt-1 h-2 rounded-full bg-gray-200">
+            <div className="mt-1 h-2 rounded-full bg-neutral-200">
               <div
-                className="h-2 rounded-full bg-indigo-600 transition-all duration-300"
+                className="h-2 rounded-full bg-primary-600 transition-all duration-300"
                 style={{ width: `${task.progress}%` }}
               />
             </div>
@@ -156,14 +156,14 @@ export function TaskCard({
         {task.subtaskProgress && task.subtaskProgress.total > 0 && (
           <div className="mt-3">
             <div className="flex items-center justify-between text-sm">
-              <span className="text-gray-600">Subtasks</span>
-              <span className="font-medium text-gray-900">
+              <span className="text-neutral-600">Subtasks</span>
+              <span className="font-medium text-neutral-900">
                 {task.subtaskProgress.completed}/{task.subtaskProgress.total}
               </span>
             </div>
-            <div className="mt-1 h-2 rounded-full bg-gray-200">
+            <div className="mt-1 h-2 rounded-full bg-neutral-200">
               <div
-                className="h-2 rounded-full bg-green-600 transition-all duration-300"
+                className="h-2 rounded-full bg-success-600 transition-all duration-300"
                 style={{ width: `${task.subtaskProgress.percentage}%` }}
               />
             </div>
@@ -171,14 +171,14 @@ export function TaskCard({
         )}
 
         {/* Meta Information */}
-        <div className="mt-4 flex items-center justify-between text-sm text-gray-500">
+        <div className="mt-4 flex items-center justify-between text-sm text-neutral-500">
           <div className="flex items-center space-x-4">
             {/* Due Date */}
             {task.dueDate && (
               <div className={cn(
                 'flex items-center space-x-1',
-                isOverdue && 'text-red-600',
-                isDueToday && 'text-orange-600'
+                isOverdue && 'text-error-600',
+                isDueToday && 'text-warning-600'
               )}>
                 {isOverdue && <AlertTriangle className="h-4 w-4" />}
                 <Calendar className="h-4 w-4" />

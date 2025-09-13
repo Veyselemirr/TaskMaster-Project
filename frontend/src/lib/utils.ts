@@ -41,55 +41,55 @@ export function isDateDueSoon(date: Date | string | null, days: number = 3): boo
 export function getTaskStatusColor(status: TaskStatus): string {
   switch (status) {
     case TaskStatus.TODO:
-      return 'bg-gray-100 text-gray-800 border-gray-200'
+      return 'bg-neutral-100 text-neutral-800 border-neutral-200'
     case TaskStatus.IN_PROGRESS:
-      return 'bg-blue-100 text-blue-800 border-blue-200'
+      return 'bg-primary-100 text-primary-800 border-primary-200'
     case TaskStatus.REVIEW:
-      return 'bg-purple-100 text-purple-800 border-purple-200'
+      return 'bg-brown-100 text-brown-800 border-brown-200'
     case TaskStatus.TESTING:
-      return 'bg-orange-100 text-orange-800 border-orange-200'
+      return 'bg-warning-100 text-warning-800 border-warning-200'
     case TaskStatus.DONE:
-      return 'bg-green-100 text-green-800 border-green-200'
+      return 'bg-success-100 text-success-800 border-success-200'
     case TaskStatus.BLOCKED:
-      return 'bg-red-100 text-red-800 border-red-200'
+      return 'bg-error-100 text-error-800 border-error-200'
     case TaskStatus.CANCELLED:
-      return 'bg-gray-100 text-gray-600 border-gray-200'
+      return 'bg-neutral-100 text-neutral-600 border-neutral-200'
     default:
-      return 'bg-gray-100 text-gray-800 border-gray-200'
+      return 'bg-neutral-100 text-neutral-800 border-neutral-200'
   }
 }
 
 export function getTaskPriorityColor(priority: TaskPriority): string {
   switch (priority) {
     case TaskPriority.LOW:
-      return 'bg-green-50 text-green-700 border-green-200'
+      return 'bg-success-50 text-success-700 border-success-200'
     case TaskPriority.MEDIUM:
-      return 'bg-yellow-50 text-yellow-700 border-yellow-200'
+      return 'bg-warning-50 text-warning-700 border-warning-200'
     case TaskPriority.HIGH:
-      return 'bg-orange-50 text-orange-700 border-orange-200'
+      return 'bg-primary-50 text-primary-700 border-primary-200'
     case TaskPriority.CRITICAL:
-      return 'bg-red-50 text-red-700 border-red-200'
+      return 'bg-error-50 text-error-700 border-error-200'
     default:
-      return 'bg-gray-50 text-gray-700 border-gray-200'
+      return 'bg-neutral-50 text-neutral-700 border-neutral-200'
   }
 }
 
 export function getTaskTypeColor(type: TaskType): string {
   switch (type) {
     case TaskType.TASK:
-      return 'bg-blue-50 text-blue-700 border-blue-200'
+      return 'bg-primary-50 text-primary-700 border-primary-200'
     case TaskType.BUG:
-      return 'bg-red-50 text-red-700 border-red-200'
+      return 'bg-error-50 text-error-700 border-error-200'
     case TaskType.FEATURE:
-      return 'bg-green-50 text-green-700 border-green-200'
+      return 'bg-success-50 text-success-700 border-success-200'
     case TaskType.EPIC:
-      return 'bg-purple-50 text-purple-700 border-purple-200'
+      return 'bg-brown-50 text-brown-700 border-brown-200'
     case TaskType.STORY:
-      return 'bg-indigo-50 text-indigo-700 border-indigo-200'
+      return 'bg-primary-50 text-primary-700 border-primary-200'
     case TaskType.IMPROVEMENT:
-      return 'bg-teal-50 text-teal-700 border-teal-200'
+      return 'bg-warning-50 text-warning-700 border-warning-200'
     default:
-      return 'bg-gray-50 text-gray-700 border-gray-200'
+      return 'bg-neutral-50 text-neutral-700 border-neutral-200'
   }
 }
 
